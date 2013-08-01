@@ -1,5 +1,7 @@
 module PriorityQueue
-(
+( PriorityQueue
+, toPriorityQueue
+, extractMax
 ) where
 
 import Data.Monoid
