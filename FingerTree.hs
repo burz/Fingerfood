@@ -2,7 +2,11 @@ module FingerTree
 ( Measured(..)
 , FingerTree
 , toTree
+, (<|)
+, (|>)
 , (><)
+, ViewL(..)
+, viewL
 , Split(..)
 , splitTree
 , split
