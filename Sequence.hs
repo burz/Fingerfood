@@ -1,6 +1,8 @@
 module Sequence
 ( Sequence
 , toSequence
+, length
+, splitAt
 , (!)
 ) where
 
