@@ -1,8 +1,8 @@
 module Sequence
 ( Sequence
 , toSequence
-, length
-, splitAt
+, length'
+, splitAt'
 , (!)
 ) where
 
@@ -26,11 +26,11 @@ instance Measured (Elem a) Size where
 toSequence :: [a] -> Sequence a
 toSequence xs = Sequence $ toTree (map Elem xs)
 
-length :: Sequence a -> Int
-length (Sequence xs) = getSize $ norm xs
+length' :: Sequence a -> Int
+length' (Sequence xs) = getSize $ norm xs
 
-splitAt :: Int -> Sequence a -> (Sequence a, Sequence a)
-splitAt i (Sequence xs) = (Sequence l, Sequence r)
+splitAt' :: Int -> Sequence a -> (Sequence a, Sequence a)
+splitAt' i (Sequence xs) = (Sequence l, Sequence r)
     where (l, r) = split (Size i <) xs
 
 (!) :: Sequence a -> Int -> a
