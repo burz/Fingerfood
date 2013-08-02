@@ -1,6 +1,6 @@
 module Sequence
 ( Sequence
-, toSequence
+, sequence
 , length'
 , splitAt'
 , (!)
@@ -23,8 +23,8 @@ newtype Sequence a = Sequence (FingerTree Size (Elem a))
 instance Measured (Elem a) Size where
     norm (Elem _) = Size 1
 
-toSequence :: [a] -> Sequence a
-toSequence xs = Sequence $ toTree (map Elem xs)
+sequence :: [a] -> Sequence a
+sequence xs = Sequence $ toTree (map Elem xs)
 
 length' :: Sequence a -> Int
 length' (Sequence xs) = getSize $ norm xs
