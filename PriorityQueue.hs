@@ -27,7 +27,8 @@ priorityQueue :: (Ord p) => [(a, p)] -> PriorityQueue a p
 priorityQueue xs = PriorityQueue $ toTree (map elem xs)
     where elem (x, p) = Elem x p
 
-extractMax :: (Ord p) => PriorityQueue a p -> (a, PriorityQueue a p)
-extractMax (PriorityQueue q) = (x, PriorityQueue (l >< r))
-    where Split l (Elem x _) r = splitTree (norm q <=) mempty q
+extractMax :: (Ord p) => PriorityQueue a p -> (Maybe a, PriorityQueue a p)
+extractMax (PriorityQueue Empty) = (Nothing, PriorityQueue Empty)
+extractMax (PriorityQueue q)     = (Just x, PriorityQueue (l >< r))
+    where Split l (Elem x _) r   = splitTree (norm q <=) mempty q
 

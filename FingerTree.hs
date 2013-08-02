@@ -1,6 +1,6 @@
 module FingerTree
 ( Measured(..)
-, FingerTree
+, FingerTree(..)
 , toTree
 , (<|)
 , (|>)
