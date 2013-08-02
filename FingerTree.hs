@@ -62,14 +62,14 @@ instance Reduce (Node v) where
     reducel (>-) z (Node3 _ c b a) = ((z >- c) >- b) >- a
 
 instance Reduce (FingerTree v) where
-    reducer (-<) Empty z          = z
-    reducer (-<) (Single x) z     = x -< z
+    reducer (-<) Empty z            = z
+    reducer (-<) (Single x) z       = x -< z
     reducer (-<) (Deep _ pr m sf) z = pr *< (m **< (sf *< z))
         where (*<) = reducer (-<)
               (**<) = reducer (reducer (-<))
 
-    reducel (>-) z Empty          = z
-    reducel (>-) z (Single x)     = z >- x
+    reducel (>-) z Empty            = z
+    reducel (>-) z (Single x)       = z >- x
     reducel (>-) z (Deep _ pr m sf) = ((z >* pr) >** m) >* sf
         where (>*) = reducel (>-)
               (>**) = reducel (reducel (>-))
@@ -106,8 +106,8 @@ data ViewL s a = NilL | ConsL a (s a)
 data ViewR s a = NilR | ConsR (s a) a
 
 viewL :: (Measured a v) => FingerTree v a -> ViewL (FingerTree v) a
-viewL Empty          = NilL
-viewL (Single x)     = ConsL x Empty
+viewL Empty            = NilL
+viewL (Single x)       = ConsL x Empty
 viewL (Deep _ pr m sf) = ConsL (head pr) (deepL (tail pr) m sf)
 
 viewR :: (Measured a v) => FingerTree v a -> ViewR (FingerTree v) a
