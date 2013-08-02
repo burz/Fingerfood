@@ -1,6 +1,6 @@
 module OrderedSequence
 ( OrderedSequence
-, toOrderedSequence
+, orderedSequence
 , partition
 , insert
 , deleteAll
@@ -25,8 +25,8 @@ newtype OrderedSequence a = OrderedSequence (FingerTree (Key a) (Elem a))
 instance Measured (Elem a) (Key a) where
     norm (Elem a) = Key a
 
-toOrderedSequence :: (Ord a) => [a] -> OrderedSequence a
-toOrderedSequence xs = OrderedSequence $ toTree (map Elem xs)
+orderedSequence :: (Ord a) => [a] -> OrderedSequence a
+orderedSequence xs = OrderedSequence $ toTree (map Elem xs)
 
 partition :: (Ord a) => a -> OrderedSequence a -> (OrderedSequence a, OrderedSequence a)
 partition k (OrderedSequence xs) = (OrderedSequence l, OrderedSequence r)
