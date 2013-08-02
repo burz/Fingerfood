@@ -10,6 +10,8 @@ module FingerTree
 , Split(..)
 , splitTree
 , split
+, takeUntil
+, dropUntil
 ) where
 
 import Data.Monoid
