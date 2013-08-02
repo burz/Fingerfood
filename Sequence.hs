@@ -1,6 +1,6 @@
 module Sequence
 ( Sequence
-, sequence
+, sequence'
 , length'
 , splitAt'
 , (!)
@@ -23,8 +23,8 @@ newtype Sequence a = Sequence (FingerTree Size (Elem a))
 instance Measured (Elem a) Size where
     norm (Elem _) = Size 1
 
-sequence :: [a] -> Sequence a
-sequence xs = Sequence $ toTree (map Elem xs)
+sequence' :: [a] -> Sequence a
+sequence' xs = Sequence $ toTree (map Elem xs)
 
 length' :: Sequence a -> Int
 length' (Sequence xs) = getSize $ norm xs
@@ -33,7 +33,10 @@ splitAt' :: Int -> Sequence a -> (Sequence a, Sequence a)
 splitAt' i (Sequence xs) = (Sequence l, Sequence r)
     where (l, r) = split (Size i <) xs
 
-(!) :: Sequence a -> Int -> a
-Sequence xs ! i = getElem x
-    where Split _ x _ = splitTree (Size i <) (Size 0) xs
+(!) :: Sequence a -> Int -> Maybe a
+Sequence xs ! i
+    | i < 0 = Nothing
+    | i >= length' (Sequence xs) = Nothing
+    | otherwise = Just $ getElem x
+        where Split _ x _ = splitTree (Size i <) (Size 0) xs
 
