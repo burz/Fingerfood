@@ -1,6 +1,6 @@
 module PriorityQueue
 ( PriorityQueue
-, toPriorityQueue
+, priorityQueue
 , extractMax
 ) where
 
@@ -16,17 +16,18 @@ instance (Ord a) => Monoid (Prio a) where
     p `mappend` MInfty      = p
     Prio m `mappend` Prio n = Prio $ m `max` n
 
-newtype Elem a = Elem{ getElem :: a }
+data Elem a p = Elem{ getElem :: a, getPrio :: p }
 
-newtype PriorityQueue a = PriorityQueue (FingerTree (Prio a) (Elem a))
+newtype PriorityQueue a p = PriorityQueue (FingerTree (Prio p) (Elem a p))
 
-instance (Ord a) => Measured (Elem a) (Prio a) where
-    norm (Elem x) = Prio x
+instance (Ord p) => Measured (Elem a p) (Prio p) where
+    norm x = Prio $ getPrio x
 
-toPriorityQueue :: (Ord a) => [a] -> PriorityQueue a
-toPriorityQueue xs = PriorityQueue $ toTree (map Elem xs)
+priorityQueue :: (Ord p) => [(a, p)] -> PriorityQueue a p
+priorityQueue xs = PriorityQueue $ toTree (map elem xs)
+    where elem (x, p) = Elem x p
 
-extractMax :: (Ord a) => PriorityQueue a -> (a, PriorityQueue a)
+extractMax :: (Ord p) => PriorityQueue a p -> (a, PriorityQueue a p)
 extractMax (PriorityQueue q) = (x, PriorityQueue (l >< r))
-    where Split l (Elem x) r = splitTree (norm q <=) mempty q
+    where Split l (Elem x _) r = splitTree (norm q <=) mempty q
 
