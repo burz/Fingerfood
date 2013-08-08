@@ -6,6 +6,7 @@ module Fingerfood.Sequence
 , (!)
 , before
 , after
+, set
 ) where
 
 import Data.Monoid
@@ -43,8 +44,13 @@ Sequence xs ! i
         where Split _ x _ = splitTree (Size i <) (Size 0) xs
 
 before :: Sequence a -> Int -> Sequence a
-before (Sequence t) n = Sequence $ takeUntil (== Size n) t
+before (Sequence t) n = Sequence $ takeUntil (> Size n) t
 
 after :: Sequence a -> Int -> Sequence a
-after (Sequence t) n = Sequence $ dropUntil (> Size n) t
+after (Sequence t) n = Sequence $ dropUntil (> Size (n + 1)) t
+
+set :: Sequence a -> Int -> a -> Sequence a
+set s n p = Sequence $ (b |> Elem p) >< a
+    where (Sequence b) = before s n
+          (Sequence a) = after s n
 

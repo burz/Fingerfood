@@ -4,9 +4,9 @@ module Fingerfood.FingerTree
 , toTree
 , (<|)
 , (|>)
-, (><)
 , ViewL(..)
 , viewL
+, (><)
 , Split(..)
 , splitTree
 , split
