@@ -1,4 +1,4 @@
-module OrderedSequence
+module Fingerfood.OrderedSequence
 ( OrderedSequence
 , orderedSequence
 , partition

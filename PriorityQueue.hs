@@ -1,4 +1,4 @@
-module PriorityQueue
+module Fingerfood.PriorityQueue
 ( PriorityQueue
 , priorityQueue
 , extractMax

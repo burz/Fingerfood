@@ -1,4 +1,4 @@
-module IntervalSet
+module Fingerfood.IntervalSet
 ( Interval(..)
 , IntervalSet
 , intervalSet

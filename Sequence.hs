@@ -1,4 +1,4 @@
-module Sequence
+module Fingerfood.Sequence
 ( Sequence
 , sequence'
 , length'

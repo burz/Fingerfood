@@ -1,4 +1,4 @@
-module FingerTree
+module Fingerfood.FingerTree
 ( Measured(..)
 , FingerTree(..)
 , toTree
