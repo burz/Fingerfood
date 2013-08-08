@@ -4,6 +4,8 @@ module Fingerfood.Sequence
 , length'
 , splitAt'
 , (!)
+, before
+, tail
 ) where
 
 import Data.Monoid
@@ -39,4 +41,10 @@ Sequence xs ! i
     | i >= length' (Sequence xs) = Nothing
     | otherwise = Just $ getElem x
         where Split _ x _ = splitTree (Size i <) (Size 0) xs
+
+before :: Sequence a -> Int -> Sequence a
+before (Sequence t) n = Sequence $ takeUntil (== Size n) t
+
+tail :: Sequence a -> Int -> Sequence a
+tail (Sequence t) n = Sequence $ dropUntil (> Size n) t
 
