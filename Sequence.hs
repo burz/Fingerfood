@@ -8,7 +8,7 @@ module Fingerfood.Sequence
 
 import Data.Monoid
 
-import FingerTree
+import Fingerfood.FingerTree
 
 newtype Size = Size{ getSize :: Int } deriving (Eq, Ord)
 

@@ -8,7 +8,7 @@ module Fingerfood.IntervalSet
 
 import Data.Monoid
 
-import FingerTree
+import Fingerfood.FingerTree
 
 data Interval a = Interval{ low :: a, high :: a } deriving Show
 

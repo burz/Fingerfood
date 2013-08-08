@@ -6,7 +6,7 @@ module Fingerfood.PriorityQueue
 
 import Data.Monoid
 
-import FingerTree
+import Fingerfood.FingerTree
 
 data Prio a = MInfty | Prio a deriving (Eq, Ord)
 

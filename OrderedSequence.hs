@@ -9,7 +9,7 @@ module Fingerfood.OrderedSequence
 
 import Data.Monoid
 
-import FingerTree
+import Fingerfood.FingerTree
 
 data Key a = NoKey | Key a deriving (Eq, Ord)
 
