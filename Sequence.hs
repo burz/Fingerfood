@@ -5,7 +5,7 @@ module Fingerfood.Sequence
 , splitAt'
 , (!)
 , before
-, tail
+, after
 ) where
 
 import Data.Monoid
@@ -45,6 +45,6 @@ Sequence xs ! i
 before :: Sequence a -> Int -> Sequence a
 before (Sequence t) n = Sequence $ takeUntil (== Size n) t
 
-tail :: Sequence a -> Int -> Sequence a
-tail (Sequence t) n = Sequence $ dropUntil (> Size n) t
+after :: Sequence a -> Int -> Sequence a
+after (Sequence t) n = Sequence $ dropUntil (> Size n) t
 
