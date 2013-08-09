@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ghci $1 -i.. -XMultiParamTypeClasses -XFlexibleInstances
