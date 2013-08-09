@@ -1,6 +1,6 @@
 module Fingerfood.Grid
 ( Grid
-, Position
+, Position(..)
 , grid
 , getPosition
 , setPosition
