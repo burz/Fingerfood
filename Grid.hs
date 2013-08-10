@@ -1,7 +1,8 @@
 module Fingerfood.Grid
-( Grid
+( Grid(..)
 , Position(..)
 , grid
+, toGrid
 , getPosition
 , setPosition
 ) where
@@ -16,6 +17,9 @@ newtype Grid a   = Grid (Sequence (Column a))
 
 grid :: (Position a) => Int -> Int -> Grid a
 grid x y = Grid . sequence' $ take y $ repeat . sequence' $ take x $ repeat empty
+
+toGrid :: [[a]] -> Grid a
+toGrid xss = Grid . sequence' $ map sequence' xss
 
 getPosition :: Grid a -> Int -> Int -> Maybe a
 getPosition (Grid c) x y = c ! y >>= (! x)
