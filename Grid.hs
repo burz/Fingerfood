@@ -3,6 +3,7 @@ module Fingerfood.Grid
 , Position(..)
 , grid
 , toGrid
+, printGrid
 , getPosition
 , setPosition
 ) where
@@ -20,6 +21,10 @@ grid x y = Grid . sequence' $ take y $ repeat . sequence' $ take x $ repeat empt
 
 toGrid :: [[a]] -> Grid a
 toGrid xss = Grid . sequence' $ map sequence' xss
+
+printGrid :: (Show a) => Grid a -> IO ()
+printGrid (Grid c) = mapM_ printRow (getList c)
+    where printRow = putStrLn . show . getList
 
 getPosition :: Grid a -> Int -> Int -> Maybe a
 getPosition (Grid c) x y = c ! y >>= (! x)

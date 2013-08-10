@@ -7,6 +7,7 @@ module Fingerfood.Sequence
 , before
 , after
 , set
+, getList
 ) where
 
 import Data.Monoid
