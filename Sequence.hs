@@ -54,3 +54,6 @@ set s n p = Sequence $ (b |> Elem p) >< a
     where (Sequence b) = before s n
           (Sequence a) = after s n
 
+getList :: Sequence a -> [a]
+getList (Sequence f) = map (\(Elem x) -> x) (toList f)
+

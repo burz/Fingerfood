@@ -1,5 +1,6 @@
 module Fingerfood.FingerTree
-( Measured(..)
+( toList
+, Measured(..)
 , FingerTree(..)
 , toTree
 , (<|)
