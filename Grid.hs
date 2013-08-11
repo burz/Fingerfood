@@ -6,6 +6,9 @@ module Fingerfood.Grid
 , getList
 , getPosition
 , setPosition
+, Subgrid(..)
+, RelativeDimensions
+, subgrid
 ) where
 
 import Fingerfood.Sequence
