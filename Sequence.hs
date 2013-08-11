@@ -8,6 +8,7 @@ module Fingerfood.Sequence
 , after
 , set
 , getList
+, subsequence
 ) where
 
 import Data.Monoid
@@ -57,4 +58,7 @@ set s n p = Sequence $ (b |> Elem p) >< a
 
 getList :: Sequence a -> [a]
 getList (Sequence f) = map (\(Elem x) -> x) (toList f)
+
+subsequence :: Sequence a -> Int -> Int -> Sequence (Maybe a)
+subsequence s x1 x2 = sequence' $ map (s !) [x1..x2]
 
