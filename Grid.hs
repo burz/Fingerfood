@@ -4,6 +4,7 @@ module Fingerfood.Grid
 , grid
 , toGrid
 , printGrid
+, getList
 , getPosition
 , setPosition
 ) where
