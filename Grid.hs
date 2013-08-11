@@ -4,6 +4,8 @@ module Fingerfood.Grid
 , grid
 , toGrid
 , getList
+, Dimensions
+, dimensions
 , getPosition
 , setPosition
 , Subgrid(..)
@@ -27,6 +29,12 @@ grid x y = Grid . sequence' $ take y $ repeat . sequence' $ take x $ repeat empt
 
 toGrid :: [[a]] -> Grid a
 toGrid xss = Grid . sequence' $ map sequence' xss
+
+type Dimensions = (Int, Int)
+
+dimensions :: Grid a -> Dimensions
+dimensions (Grid cs) = (length s, length c + 1)
+    where (s : c) = map getList (getList cs)
 
 getPosition :: Grid a -> Int -> Int -> Maybe a
 getPosition (Grid c) x y = c ! y >>= (! x)
