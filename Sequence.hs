@@ -28,6 +28,9 @@ newtype Sequence a = Sequence (FingerTree Size (Elem a))
 instance Measured (Elem a) Size where
     norm (Elem _) = Size 1
 
+instance (Show a) => Show (Sequence a) where
+    show s = show $ getList s
+
 sequence' :: [a] -> Sequence a
 sequence' xs = Sequence $ toTree (map Elem xs)
 
