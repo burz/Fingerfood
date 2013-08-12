@@ -21,8 +21,11 @@ class Position a where
 type    Column a = Sequence a
 newtype Grid a   = Grid (Sequence (Column a))
 
+show' :: (Show a) => Sequence a -> String
+show' s = foldr1 (\a b -> a ++ '\n' : b) $ map show (getList s)
+
 instance (Show a) => Show (Grid a) where
-    show (Grid s) = foldr1 (\a b -> a ++ '\n' : b) $ map show (getList s)
+    show (Grid s) = show' s
 
 grid :: (Position a) => Int -> Int -> Grid a
 grid x y = Grid . sequence' $ take y $ repeat . sequence' $ take x $ repeat empty
@@ -47,7 +50,7 @@ type    RelativeDimensions = (Int, Int, Int, Int)
 newtype Subgrid a          = Subgrid (Sequence (Maybe (Column (Maybe a))))
 
 instance (Show a) => Show (Subgrid a) where
-    show (Subgrid s) = foldr1 (\a b -> a ++ '\n' : b) $ map show (getList s)
+    show (Subgrid s) = show' s
 
 subgrid :: Grid a -> Int -> Int -> RelativeDimensions -> Subgrid a
 subgrid (Grid s) x y (x1, x2, y1, y2) = Subgrid $ subsequence s' (y - y1) (y + y2)
