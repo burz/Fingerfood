@@ -1,3 +1,6 @@
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE FlexibleInstances #-}
+
 module Fingerfood.IntervalSet
 ( Interval(..)
 , IntervalSet
